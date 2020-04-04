@@ -1,14 +1,13 @@
 /*
  * \brief Get data from wireless remote controller asynchronously (interrupts)
  *
- * This example is using the trigger signal from the remote controller to
+ * \This example is using the trigger signal from the remote controller to
  * asynchronously launch a function every time a data is received.
- *
  * \author Quentin Comte-Gaz <quentin@comte-gaz.com>
- * \date 1 July June 2016
- * \license MIT License (contact me if too restrictive)
+ * \WirelessRemoteController library from its modified for ht12e/ht12d
+ * \this code only have an example. 
  * \copyright Copyright (c) 2016 Quentin Comte-Gaz
- * \version 1.0
+ * \version 1.0 to use operating without serial clean serial codes..
  */
 
 #include <WirelessRemoteController.h>
@@ -36,19 +35,19 @@ void setup(void)
    // initialize the digital pin as an output.
   pinMode(LED_BUILTIN, OUTPUT);
   if(transmitteri==false){
-   Serial.begin(9600);
+   Serial.begin(9600);//remove if without pc serial need debugs
   
-  while (!Serial)
+  while (!Serial)//remove if without pc serial need debugs
   {
-    digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN)); // Turn the LED from off to on, or on to off
-    delay(100);         // fast blink
+    digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN)); // Turn the LED from off to on, or on to off //remove if without pc serial need debugs
+    delay(100);         // fast blink//remove if without pc serial need debugs
   }
-  Serial.println("Kadirden selam");
+  Serial.println("Hello people");//remove if without pc serial need debugs
   }
   if(transmitteri==false){// Trigger interrupt by putting D2 pin as DT remote controller pin (trigger)
   remote_controller.addTrigger(PA8, receiveFromRemoteController);
   
-  Serial.print("Data received from remote controller will be printed when received.\n");
+  Serial.print("Data received from remote controller will be printed when received.\n");//remove if without pc serial need debugs
   }
 }
 void FromByte(uint8 c, bool b[6])
@@ -75,21 +74,5 @@ if(transmitteri==true){
     delay(300);             // wait for a second
     digitalWrite(LED_BUILTIN, LOW);    // set the LED off
 }
-/* if(transmitteri==false){ //receiver
- if(digitalRead(PA8)==HIGH){  
-    current_rx=remote_controller.getCurrentValue();
-    Serial.print("Data received: ");
-    Serial.print(current_rx);  
-    Serial.print("\n");
-    //digitalWrite(LED_BUILTIN, HIGH);   // set the LED on
-     delay(1000);             // wait for a second
-   // digitalWrite(LED_BUILTIN, LOW);    // set the LED off
-  
-  // Serial.print(n);
-  //Serial.println("\n");
-  //}
- //delay(1000);
- }
-}
-*/
+
 }
